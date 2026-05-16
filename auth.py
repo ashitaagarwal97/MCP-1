@@ -11,15 +11,6 @@ CLIENT_ID = os.getenv("SALESFORCE_CLIENT_ID")
 CLIENT_SECRET = os.getenv("SALESFORCE_CLIENT_SECRET")
 USERNAME = os.getenv("SALESFORCE_USERNAME")
 PASSWORD = os.getenv("SALESFORCE_PASSWORD")
-<<<<<<< HEAD
-=======
-N7USERNAME= os.getenv("NEURON7_USERNAME")
-N7PASSWORD = os.getenv("NEURON7_PASSWORD")
-N7URL = os.getenv("NEURON7_URL")
-JIRA_EMAIL     = os.environ.get("JIRA_EMAIL")
-JIRA_API_TOKEN = os.environ.get("JIRA_API_TOKEN")
-
->>>>>>> 4df7c96cad882fdd79ba92f6ee1ad62ecdc2b196
 
 access_token = None
 instance_url = None
@@ -51,39 +42,3 @@ def get_access_token():
 
 def get_instance_url():
     authenticate()      # ✅ Always fetch fresh token
-<<<<<<< HEAD
-    return instance_url
-=======
-    return instance_url
-
-# Neuron 7 Authentication Method
-def n7_auth_token() -> str:
-    n7authurl = N7URL+"security/user/authenticate"
-    payload = {
-        "userName": N7USERNAME,
-        "password": N7PASSWORD
-    }
-
-    response = requests.post(
-        n7authurl,
-        json=payload,
-        headers={"Content-Type": "application/json"}
-    )
-    response.raise_for_status()
-
-    token = response.headers.get("Authorization")
-
-    if not token:
-        raise ValueError("Authorization token not found in response headers.")
-
-    return token
-
-# Jira Authentication Method
-
-def get_jira_auth() -> HTTPBasicAuth:
-    """
-    Returns HTTPBasicAuth for Jira API calls.
-    Use this in all Jira tools instead of repeating credentials.
-    """
-    return HTTPBasicAuth(JIRA_EMAIL, JIRA_API_TOKEN)
->>>>>>> 4df7c96cad882fdd79ba92f6ee1ad62ecdc2b196
