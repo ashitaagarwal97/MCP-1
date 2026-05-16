@@ -185,7 +185,6 @@ async def mcp_handler(request: Request):
                 "id": req_id,
                 "error": {"code": -32601, "message": f"Method not found: {method}"}
             })
-
     except Exception as e:
         logger.error(str(e))
         return JSONResponse(
